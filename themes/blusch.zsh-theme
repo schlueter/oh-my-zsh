@@ -8,7 +8,7 @@ local ret_status="%(?:%{$fg_bold[white]%}$ :%{$fg_bold[red]%}$ %s)"
 # local COMMAND_TIP='%{$terminfo[bold]$fg[blue]%}$(wget -qO - http://www.commandlinefu.com/commands/random/plaintext | sed 1d | sed '/^$/d' | sed 's/^/║/g')%{$reset_color%}'
 ######### PROMPT #########
 PROMPT="%{$terminfo[bold]$fg[blue]%}╔ %{$reset_color%}${USER_HOST} ${CURRENT_DIR} ${GIT_BRANCH}
-%{$terminfo[bold]$fg[blue]%}╚ %{$reset_color%}%B%{$terminfo[bold]$fg[white]%}${ret_status}%b%{$reset_color%} "
+%{$terminfo[bold]$fg[blue]%}╚ %{$reset_color%}%B%{$terminfo[bold]$fg[white]%}${ret_status}%b%{$reset_color%}"
 RPS1='${RETURN_CODE}'
 RPROMPT='%{$fg[green]%}[%*]%{$reset_color%}'
 ######### PROMPT #########
