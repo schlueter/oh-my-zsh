@@ -1,21 +1,21 @@
 #!/usr/bin/env zsh
-local USER_HOST='%{$terminfo[bold]$fg[yellow]%}%n@%m%{$reset_color%}'
+local USER_HOST='%{$fg[blue]%}%n %{$fg[white]%}at %{$fg[green]%}%m%{$reset_color%}'
 local RETURN_CODE="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-local GIT_BRANCH='%{$terminfo[bold]$fg[red]%}$(git_prompt_info)%{$reset_color%}'
-local CURRENT_DIR='%{$terminfo[bold]$fg[green]%} %~%{$reset_color%}'
+
+local GIT_INFO='%{$fg[white]%}on $(git_prompt_info)%{$reset_color%}'
+local CURRENT_DIR='%{$fg[white]%}in %{$fg[green]%}%~%{$reset_color%}'
 local RUBY_RVM='%{$fg[gray]%}$(rvm-prompt i v g)%{$reset_color%}'
-local ret_status="%(?:%{$fg_bold[white]%}$ :%{$fg_bold[red]%}$ %s)"
-# local COMMAND_TIP='%{$terminfo[bold]$fg[blue]%}$(wget -qO - http://www.commandlinefu.com/commands/random/plaintext | sed 1d | sed '/^$/d' | sed 's/^/║/g')%{$reset_color%}'
+local COMMAND_TIP='%{$terminfo[bold]$fg[blue]%}$(wget -qO - http://www.commandlinefu.com/commands/random/plaintext | sed 1d | sed '/^$/d' | sed 's/^/║/g')%{$reset_color%}'
 ######### PROMPT #########
-PROMPT="%{$terminfo[bold]$fg[blue]%}╔ %{$reset_color%}${USER_HOST} ${CURRENT_DIR} ${GIT_BRANCH}
-%{$terminfo[bold]$fg[blue]%}╚ %{$reset_color%}%B%{$terminfo[bold]$fg[white]%}${ret_status}%b%{$reset_color%}"
+PROMPT="$USER_HOST $CURRENT_DIR $GIT_INFO
+%{$fg[white]%}$%{$reset_color%} "
 RPS1='${RETURN_CODE}'
 RPROMPT='%{$fg[green]%}[%*]%{$reset_color%}'
 ######### PROMPT #########
 ########## GIT ###########
 GIT_CLEAN_COLOR="$fg[blue]"
 GIT_DIRTY_COLOR="$fg[red]"
-ZSH_THEME_GIT_PROMPT_PREFIX="$fg[white]"
+ZSH_THEME_GIT_PROMPT_PREFIX="$fg[green]"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$GIT_PROMPT_INFO%}"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$GIT_DIRTY_COLOR%}✘"
 ZSH_THEME_GIT_PROMPT_CLEAN=" %{$GIT_CLEAN_COLOR%}✔"
