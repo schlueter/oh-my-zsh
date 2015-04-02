@@ -1,21 +1,17 @@
 #!/usr/bin/env zsh
-local USER_HOST='%{$fg[blue]%}%n %{$fg[white]%}at %{$fg[green]%}%m%{$reset_color%}'
-local RETURN_CODE="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-
-local GIT_INFO='%{$fg[white]%}on $(git_prompt_info)%{$reset_color%}'
-local CURRENT_DIR='%{$fg[white]%}in %{$fg[green]%}%~%{$reset_color%}'
-local RUBY_RVM='%{$fg[gray]%}$(rvm-prompt i v g)%{$reset_color%}'
-local COMMAND_TIP='%{$terminfo[bold]$fg[blue]%}$(wget -qO - http://www.commandlinefu.com/commands/random/plaintext | sed 1d | sed '/^$/d' | sed 's/^/║/g')%{$reset_color%}'
+local ret_status="%(?:%{$fg_bold[white]%}▸:%{$fg_bold[red]%}▸%s)"
+local user_host='%{$fg[blue]%}%n%{$fg[white]%}@%{$fg[yellow]%}%m%{$reset_color%}'
+local git_info='$(git_prompt_info)'
+local current_dir='%{$fg[white]%}:%{$fg[green]%}%~%{$reset_color%}'
 ######### PROMPT #########
-PROMPT="$USER_HOST $CURRENT_DIR $GIT_INFO
-%{$fg[white]%}$%{$reset_color%} "
-RPS1='${RETURN_CODE}'
-RPROMPT='%{$fg[green]%}[%*]%{$reset_color%}'
+PROMPT="$user_host$current_dir $git_info
+$ret_status%{$reset_color%} "
+RPROMPT='%{$fg[white]%}%*%{$reset_color%}'
 ######### PROMPT #########
 ########## GIT ###########
 GIT_CLEAN_COLOR="$fg[blue]"
 GIT_DIRTY_COLOR="$fg[red]"
-ZSH_THEME_GIT_PROMPT_PREFIX="$fg[green]"
+ZSH_THEME_GIT_PROMPT_PREFIX="$fg[white]"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$GIT_PROMPT_INFO%}"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$GIT_DIRTY_COLOR%}✘"
 ZSH_THEME_GIT_PROMPT_CLEAN=" %{$GIT_CLEAN_COLOR%}✔"
