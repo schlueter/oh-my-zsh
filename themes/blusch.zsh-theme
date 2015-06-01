@@ -9,8 +9,8 @@ local nvm_info='%{$fg[green]%}⬢ %{$fg[white]%}$(nvm_prompt_info)%{$reset_color
 local git_remote_state='$(git_remote_status)'
 local current_dir='%{$fg[white]%}:%{$fg[green]%}%~%{$reset_color%}'
 ######### PROMPT #########
-PROMPT="$user_host$current_dir $git_info$git_state$git_remote_state $pyenv_info $rbenv_info $nvm_info
-$ret_status%{$reset_color%} "
+PROMPT="⎧ $pyenv_info $rbenv_info $nvm_info $git_info$git_state$git_remote_state%{$reset_color%}
+⎩ $user_host$current_dir $ret_status%{$reset_color%} "
 ########## GIT ###########
 GIT_CLEAN_COLOR="$fg[blue]"
 GIT_DIRTY_COLOR="$fg[red]"
