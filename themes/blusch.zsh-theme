@@ -3,9 +3,15 @@ local ret_status="%(?:%{$fg_bold[white]%}▸:%{$fg_bold[red]%}▸%s)"
 local user_host='%{$fg[blue]%}%n%{$fg[white]%}@%{$fg[yellow]%}%m%{$reset_color%}'
 local git_info='$(git_prompt_info)'
 local git_state='$(git_prompt_status)'
+
+if [[ $NVM_INFO || $($(dirname $0)/../lib/check_for_file_in_parent_directory.py node_modules) ]]
+then
+  local nvm_info='%{$fg[green]%}⬢ %{$fg[white]%}$(nvm_prompt_info)%{$reset_color%}'
+else
+  local nvm_info=''
+fi
 local pyenv_info='🐍  %{$fg[green]%}$(pyenv_prompt_info)%{$reset_color%}'
 local rbenv_info='💎  %{$fg[red]%}$(rbenv_prompt_info)%{$reset_color%}'
-local nvm_info='%{$fg[green]%}⬢ %{$fg[white]%}$(nvm_prompt_info)%{$reset_color%}'
 local git_remote_state='$(git_remote_status)'
 local current_dir='%{$fg[white]%}:%{$fg[green]%}%~%{$reset_color%}'
 ######### PROMPT #########
