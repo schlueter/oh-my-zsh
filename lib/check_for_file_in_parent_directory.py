@@ -4,7 +4,7 @@
 Check for a file in any parent directory of the current directory.
 
 Usage:
-    {} <filename>
+    check_for_file_in_parent_directory.py <filename>
 
 Searches for <filename>.
 """
