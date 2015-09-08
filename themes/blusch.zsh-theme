@@ -3,20 +3,29 @@ local ret_status="%(?:%{$fg_bold[white]%}▸:%{$fg_bold[red]%}▸%s)"
 local user_host='%{$fg[blue]%}%n%{$fg[white]%}@%{$fg[yellow]%}%m%{$reset_color%}'
 local git_info='$(git_prompt_info)'
 local git_state='$(git_prompt_status)'
-
-if [[ $NVM_INFO || $($(dirname $0)/../lib/check_for_file_in_parent_directory.py node_modules) ]]
-then
-  local nvm_info='%{$fg[green]%}⬢ %{$fg[white]%}$(nvm_prompt_info)%{$reset_color%}'
-else
-  local nvm_info=''
-fi
-local pyenv_info='🐍  %{$fg[green]%}$(pyenv_prompt_info)%{$reset_color%}'
-local rbenv_info='💎  %{$fg[red]%}$(rbenv_prompt_info)%{$reset_color%}'
 local git_remote_state='$(git_remote_status)'
 local current_dir='%{$fg[white]%}:%{$fg[green]%}%~%{$reset_color%}'
+
+function prefix_prompt() {
+  local info_line_test="$(git_prompt_info)"
+  if [[ "$info_line_test" != "" ]]
+    then
+    echo '⎧ '
+  fi
+}
+
+function midfix_prompt() {
+  local info_line_test="$(git_prompt_info)"
+  if [[ "$info_line_test" != "" ]]
+    then
+    echo '\n⎩ '
+  fi
+}
+
+local prefix='$(prefix_prompt)'
+local midfix='$(midfix_prompt)'
 ######### PROMPT #########
-PROMPT="⎧ $pyenv_info $rbenv_info $nvm_info $git_info$git_state$git_remote_state%{$reset_color%}
-⎩ $user_host$current_dir $ret_status%{$reset_color%} "
+PROMPT="$prefix$git_info$git_state$git_remote_state%{$reset_color%}$midfix$user_host$current_dir $ret_status%{$reset_color%} "
 ########## GIT ###########
 GIT_CLEAN_COLOR="$fg[blue]"
 GIT_DIRTY_COLOR="$fg[red]"
